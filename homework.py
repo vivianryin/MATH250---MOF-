@@ -29,7 +29,8 @@ def future_value(amount, rate, years, periods_per_year=1):
 	Returns:
 		future (float).  Amount after compound interest has been applied.
 	"""
-	future = amount*(1+(rate/periods_per_year))**(years*periods_per_year)
+	future = amount*(1+(rate/periods_per_year))**(years*periods_per_year) 
+	#This function takes the present value and compute the future value according to the rate and compunding frequency 
 	return future
 	pass
 
