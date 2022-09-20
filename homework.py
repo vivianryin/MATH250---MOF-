@@ -9,7 +9,7 @@ TODO: rename this file to `homework.py` before submitting to gradescope.
 def hello(name):
 	""" A simple function that returns a greeting """
 	
-	# return "Hello, {}!".format(name)
+	return "Hello, {}!".format(name)
 	pass
 
 
