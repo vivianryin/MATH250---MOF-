@@ -23,9 +23,8 @@ def put_payoff(stock, strike):
 
     # IMPLEMENT THIS PAYOFF FUNCTION
     return max(strike-stock,0)
-    pass
-a = put_payoff(70,100)
-print(a)
+
+
 
 
 def option_pricer(stock, strike, U, D, R, N, payoff_func):
@@ -42,13 +41,15 @@ def option_pricer(stock, strike, U, D, R, N, payoff_func):
         payoff_func (function): This is a function that will take a stock price
             and a strike price.
     """
-    p = (R-D)/(U-D) #risk-neutral probability
+    p = (R-D)/(U-D) #calculate the risk-neutral probability
     discount_factor = 1/((1+R)**N)
     option_price = 0
     for i in range (N+1):
-        s_t= (((1+U)**i)*((1+D)**(N-i)))*stock # stock price at time T
-        payoff = payoff_func(s_t,strike)
+        s_t= (((1+U)**i)*((1+D)**(N-i)))*stock # stock price at time T,computing from all D to all U
+        payoff = call_payoff(s_t,strike)
+        #st.append(payoff) #check to see if all the payoff is included
         option_price += ((comb(N,i))*((p**i)*((1-p)**(N-i)))*payoff)
-    option_price = discount_factor*option_price
+    option_price = option_price*discount_factor
     return option_price
-    pass
+
+option_pricer(stock, strike, U, D, R, N, payoff_func=put_payoff)
